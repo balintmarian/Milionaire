@@ -8,3 +8,16 @@ public class Millionaire {
 
     }
 }
+/*
+Player-firstname,lastname
+
+game-question
+    -level
+    -start()
+    -50/50
+
+questions-question
+         -dificulty
+         -list<answer>
+ */
+
