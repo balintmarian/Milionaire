@@ -8,8 +8,7 @@ public class Game {
     private int currentLevel = 1;
     private ArrayList<Question> questionList = new ArrayList<>();
 
-    public Game(int currentLevel, ArrayList<Question> questionList) {
-        this.currentLevel = currentLevel;
+    public Game(ArrayList<Question> questionList) {
         this.questionList.addAll(questionList);
     }
 
@@ -19,23 +18,22 @@ public class Game {
 
     public void startGame() {
         // initializam intrebarile si jocul
-
+        askQuestion();
     }
 
     public void askQuestion() {
         //show first question on screen
         int maxLevel = Question.MAX_LEVEL;
-        int index = 0;
-        for (; index < maxLevel; index++) {
+        Random random = new Random();
 
-            Random random = new Random();
+        for (int index = 0; index < maxLevel; index++) {
             int randomNumber = random.nextInt(3);
             System.out.println("NUMARUL -randomizat- ESTE " + (randomNumber + 1));
             System.out.println("dificultatea curenta este " + currentLevel);
             System.out.println();
 
 
-            System.out.println("se afiseaza intrebarea" + index+1 + " " + 1);
+            System.out.println("se afiseaza intrebarea" + index + 1 + " " + 1);
             //Showing question HERE--------
             for (int index1 = 0; index1 < questionList.size() - 1; index1++) {
 
@@ -88,8 +86,6 @@ public class Game {
             System.out.println("u lose" + "trial 1.0");
             return false;
         }
-
-
     }
 
     public void fiftyFifty() {

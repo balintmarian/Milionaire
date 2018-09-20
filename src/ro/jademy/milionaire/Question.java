@@ -1,6 +1,7 @@
 package ro.jademy.milionaire;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Question {
     public static final int MAX_LEVEL = 3;
@@ -8,6 +9,7 @@ public class Question {
     private String question;
     private int difficutyLevel = 1;
     private ArrayList<Answer> answerList = new ArrayList<>();
+
     //constructor trial 1.0, didnt work for now
     public Question(int difficutyLevel, String question, ArrayList<Answer> answerList) {
         this.answerList = answerList;
@@ -16,11 +18,8 @@ public class Question {
     }
 
     //constructor trial 1.1
-    public Question(int difficutyLevel, String question, Answer answer1, Answer answer2, Answer answer3, Answer answer4) {
-        this.answerList.add(0, answer1);
-        this.answerList.add(1, answer2);
-        this.answerList.add(2, answer3);
-        this.answerList.add(3, answer4);
+    public Question(int difficutyLevel, String question, Answer... answers) {
+        this.answerList.addAll(Arrays.asList(answers));
         this.difficutyLevel = difficutyLevel;
         this.question = question;
     }

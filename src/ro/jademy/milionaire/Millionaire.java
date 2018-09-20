@@ -1,115 +1,112 @@
 package ro.jademy.milionaire;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Millionaire {
 
+    private static ArrayList<Question> questionList = new ArrayList<>();
+
     public static void main(String[] args) {
-        String question;
-        ArrayList<Question> questionList = new ArrayList<>();
-        //ArrayList<String> answerList=new ArrayList<>();
 
+        initQuestions();
 
-        questionList.add(0, new Question(1,
+        ArrayList<Question> gameQuestions = getGameQuestions();
+
+        // strating game with subset of random questions
+        Game g1 = new Game(gameQuestions);
+        g1.startGame();
+        // g1.answerQuestion();
+
+    }
+
+    private static void initQuestions() {
+        questionList.add(new Question(1,
                 "1 DIF1 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(1, new Question(1,
+        questionList.add(new Question(1,
                 "2 DIF1 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(2, new Question(1,
+        questionList.add(new Question(1,
                 "3 DIF1 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(3, new Question(2,
+        questionList.add(new Question(2,
                 "4 DIF2 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
         questionList.add(4, new Question(2,
                 "5 DIF2 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(5, new Question(2,
+        questionList.add(new Question(2,
                 "6 DIF2 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(6, new Question(3,
+        questionList.add(new Question(3,
                 "7 DIF3 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(7, new Question(3,
+        questionList.add(new Question(3,
                 "8 DIF3 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
 
-        questionList.add(8, new Question(3,
+        questionList.add(new Question(3,
                 "9 DIF3 What is the highest number used in a Sudoku puzzle?",
                 new Answer("1true", true),
-                new Answer("2false", false),
-                new Answer("3false", false),
-                new Answer("4false", false)));
+                new Answer("2false"),
+                new Answer("3false"),
+                new Answer("4false")));
+    }
 
-        //strating game trial
-        Game g1 = new Game(1, questionList);
-        g1.askQuestion();
-       // g1.answerQuestion();
+   private static ArrayList<Question> getGameQuestions() {
+        // create sub set of questions
+        Random random = new Random();
+        ArrayList<Question> gameQuestions = new ArrayList<>();
+        for (int index = 0; index < questionList.size() - 1; index++) {
+            if (questionList.get(index).getDifficutyLevel() == 1 &&
+                    random.nextInt(2 + 1) == index) {
+                gameQuestions.add(questionList.get(index));
 
+            } else if (questionList.get(index).getDifficutyLevel() == 2 &&
+                    random.nextInt(2 + 1) + 3 == index) {
+                gameQuestions.add(questionList.get(index));
 
-//        Answer a1=new Answer("1true",true);
-//        Answer a2=new Answer("2false",false);
-//        Answer a3=new Answer("3false",false);
-//        Answer a4=new Answer("4false",false);
-
-        //int questionIndex = 0;
-//            switch (questionIndex) {
-//                case 1:
-//                   return question="What is the highest number used in a Sudoku puzzle?;
-//                   break;
-//                case 2:
-//                   return question="What is the term for a positive electrode?";
-//                   break;
-//                case 3:
-//                   return question="Which swimming stroke is named after an insect?";
-//                   break;
-//            }
+            } else if (questionList.get(index).getDifficutyLevel() == 3 &&
+                    random.nextInt(2 + 1) + 6 == index) {
+                gameQuestions.add(questionList.get(index));
 
 
+            }
+        }
+        return gameQuestions;
     }
 }
-/*
-Player-firstname,lastname
-
-game-question
-    -level
-    -start()
-    -50/50
-
-questions-question
-         -dificulty
-         -list<answer>
- */
-
