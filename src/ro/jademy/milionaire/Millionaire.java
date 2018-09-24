@@ -87,26 +87,29 @@ public class Millionaire {
                 new Answer("4false")));
     }
 
-   private static ArrayList<Question> getGameQuestions() {
+    private static ArrayList<Question> getGameQuestions() {
         // create sub set of questions
         Random random = new Random();
         ArrayList<Question> gameQuestions = new ArrayList<>();
-        for (int index = 0; index < questionList.size() - 1; index++) {
-            if (questionList.get(index).getDifficutyLevel() == 1 &&
-                    random.nextInt(2 + 1) == index) {
-                gameQuestions.add(questionList.get(index));
-
-            } else if (questionList.get(index).getDifficutyLevel() == 2 &&
-                    random.nextInt(2 + 1) + 3 == index) {
-                gameQuestions.add(questionList.get(index));
-
-            } else if (questionList.get(index).getDifficutyLevel() == 3 &&
-                    random.nextInt(2 + 1) + 6 == index) {
-                gameQuestions.add(questionList.get(index));
 
 
-            }
+        for (int i = 1; i <= Game.MAX_LEVEL; i++) {
+            ArrayList<Question> levelQuestions = getQuestionsForLevel(i);
+            int randomIndex=random.nextInt(levelQuestions.size());
+            gameQuestions.add(levelQuestions.get(randomIndex));
+
         }
         return gameQuestions;
+    }
+
+    private static ArrayList<Question> getQuestionsForLevel(int level) {
+        ArrayList<Question> levelQuestion = new ArrayList<>();
+        for (Question q : questionList) {
+            if (q.getDifficutyLevel() == level) {
+                levelQuestion.add(q);
+            }
+
+        }
+        return levelQuestion;
     }
 }
